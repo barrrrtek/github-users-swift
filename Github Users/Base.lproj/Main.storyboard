@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,23 +13,34 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Github_Users" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="P1B-Hv-MaF" userLabel="Search Bar Stack">
-                                <rect key="frame" x="5" y="64" width="365" height="51"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xPt-0m-w90" userLabel="searchSV">
+                                <rect key="frame" x="40" y="44" width="348" height="51"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="TLW-4v-mcz">
-                                        <rect key="frame" x="0.0" y="0.0" width="365" height="51"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="292" height="51"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLa-Ke-4r2">
+                                        <rect key="frame" x="300" y="0.0" width="48" height="51"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                        <state key="normal" title="Search"/>
+                                        <connections>
+                                            <action selector="searchButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uHY-ae-7SB"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="vLa-Ke-4r2" firstAttribute="leading" secondItem="TLW-4v-mcz" secondAttribute="trailing" constant="8" id="NMc-Sf-3s6"/>
+                                </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="V46-Ka-m4m" userLabel="Table View Stack">
-                                <rect key="frame" x="20" y="125" width="335" height="623"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RYQ-V1-Cwk" userLabel="tableViewSV">
+                                <rect key="frame" x="10" y="100" width="408" height="792"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fVd-oM-Cxi">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="623"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fnN-Ux-UzU">
+                                        <rect key="frame" x="0.0" y="0.0" width="408" height="792"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
                                 </subviews>
@@ -38,19 +49,22 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="P1B-Hv-MaF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="PSE-bq-51T"/>
-                            <constraint firstItem="V46-Ka-m4m" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="PUa-o2-18T"/>
-                            <constraint firstItem="V46-Ka-m4m" firstAttribute="top" secondItem="P1B-Hv-MaF" secondAttribute="bottom" constant="10" id="hHy-bv-Ucz"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="V46-Ka-m4m" secondAttribute="trailing" constant="20" id="pAF-6M-JdC"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="P1B-Hv-MaF" secondAttribute="trailing" constant="5" id="sZi-zt-c52"/>
-                            <constraint firstItem="P1B-Hv-MaF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="slV-ac-Lep"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="V46-Ka-m4m" secondAttribute="bottom" constant="30" id="z8K-do-KUC"/>
+                            <constraint firstItem="xPt-0m-w90" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="6CA-Ax-0jR"/>
+                            <constraint firstItem="xPt-0m-w90" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="Byy-Ad-YIa"/>
+                            <constraint firstItem="RYQ-V1-Cwk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="ZbR-CO-pK7"/>
+                            <constraint firstItem="RYQ-V1-Cwk" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="bEq-rf-LrU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xPt-0m-w90" secondAttribute="trailing" constant="20" id="kpa-Oe-M0q"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RYQ-V1-Cwk" secondAttribute="trailing" constant="10" id="pMQ-vn-Ai6"/>
+                            <constraint firstItem="RYQ-V1-Cwk" firstAttribute="top" secondItem="xPt-0m-w90" secondAttribute="bottom" constant="5" id="zIl-NJ-LSp"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="searchBart" destination="TLW-4v-mcz" id="JlV-cB-IER"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="99.753694581280797"/>
+            <point key="canvasLocation" x="131.77570093457942" y="99.136069114470843"/>
         </scene>
     </scenes>
     <resources>
