@@ -20,11 +20,11 @@
                                 <rect key="frame" x="40" y="44" width="348" height="51"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="TLW-4v-mcz">
-                                        <rect key="frame" x="0.0" y="0.0" width="292" height="51"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="51"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLa-Ke-4r2">
-                                        <rect key="frame" x="300" y="0.0" width="48" height="51"/>
+                                        <rect key="frame" x="58" y="0.0" width="290" height="51"/>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                         <state key="normal" title="Search"/>
                                         <connections>
@@ -36,11 +36,11 @@
                                     <constraint firstItem="vLa-Ke-4r2" firstAttribute="leading" secondItem="TLW-4v-mcz" secondAttribute="trailing" constant="8" id="NMc-Sf-3s6"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RYQ-V1-Cwk" userLabel="tableViewSV">
-                                <rect key="frame" x="10" y="100" width="408" height="792"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="XfA-2C-Nos" userLabel="tableViewSV">
+                                <rect key="frame" x="0.0" y="105" width="408" height="787"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fnN-Ux-UzU">
-                                        <rect key="frame" x="0.0" y="0.0" width="408" height="792"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pPl-WJ-eHY">
+                                        <rect key="frame" x="0.0" y="0.0" width="408" height="787"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
                                 </subviews>
@@ -50,16 +50,17 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="xPt-0m-w90" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="6CA-Ax-0jR"/>
+                            <constraint firstAttribute="trailing" secondItem="XfA-2C-Nos" secondAttribute="trailing" constant="20" id="6Dh-GQ-hTS"/>
+                            <constraint firstItem="XfA-2C-Nos" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="B1g-PD-pyf"/>
                             <constraint firstItem="xPt-0m-w90" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="Byy-Ad-YIa"/>
-                            <constraint firstItem="RYQ-V1-Cwk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="ZbR-CO-pK7"/>
-                            <constraint firstItem="RYQ-V1-Cwk" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="bEq-rf-LrU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xPt-0m-w90" secondAttribute="trailing" constant="20" id="kpa-Oe-M0q"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RYQ-V1-Cwk" secondAttribute="trailing" constant="10" id="pMQ-vn-Ai6"/>
-                            <constraint firstItem="RYQ-V1-Cwk" firstAttribute="top" secondItem="xPt-0m-w90" secondAttribute="bottom" constant="5" id="zIl-NJ-LSp"/>
+                            <constraint firstItem="XfA-2C-Nos" firstAttribute="top" secondItem="xPt-0m-w90" secondAttribute="bottom" constant="10" id="l9G-rB-UyL"/>
+                            <constraint firstItem="XfA-2C-Nos" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wYp-Iu-PWu"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="searchBart" destination="TLW-4v-mcz" id="JlV-cB-IER"/>
+                        <outlet property="tableView" destination="pPl-WJ-eHY" id="8co-v3-7a6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
