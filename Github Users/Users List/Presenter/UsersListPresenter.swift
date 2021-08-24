@@ -11,9 +11,13 @@ class UsersListPresenter {
         UserModel(username: "Kuba2", avatarURL: "", id: 6)
     ]
     
-    func getSearchedUsers(/*searchedUser: String*/) -> Array<UserModel>{
-        //searchedUsers.removeAll()
-        //return searchedUsers
-        return listOfUsers
+    func getSearchedUsers(_ searchedUser: String) -> Array<UserModel>{
+        searchedUsers.removeAll()
+        for user in listOfUsers {
+            if(user.username?.hasPrefix(searchedUser) == true){
+                searchedUsers.append(user)
+            }
+        }
+        return searchedUsers
     }
 }

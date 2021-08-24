@@ -4,7 +4,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBart: UISearchBar!
     @IBAction func searchButton(_ sender: UIButton) {
-        
+        let searchText = searchBart.text
+        usersList = usersListPresenter.getSearchedUsers(searchText!)
+        tableView.reloadData()
     }
     let usersListCellId = "UsersListTableViewCell"
     
@@ -20,8 +22,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.separatorColor = UIColor.clear
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.register(UINib.init(nibName: usersListCellId, bundle: nil), forCellReuseIdentifier: usersListCellId)
-        
-        usersList = usersListPresenter.getSearchedUsers()
     }
     
     override func didReceiveMemoryWarning() {
