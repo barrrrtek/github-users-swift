@@ -1,6 +1,6 @@
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBart: UISearchBar!
     @IBAction func searchButton(_ sender: UIButton) {
@@ -15,20 +15,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorColor = UIColor.clear
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.register(UINib.init(nibName: usersListCellId, bundle: nil), forCellReuseIdentifier: usersListCellId)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+}
 
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -42,7 +41,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let user = usersList[indexPath.row]
         cell.imgUserAvatar.image = UIImage(named: "mock_avatar")
         cell.lblUsername.text = user.username!
-
         return cell
     }
     
