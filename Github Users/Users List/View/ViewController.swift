@@ -9,7 +9,6 @@ class ViewController: UIViewController {
         tableView.reloadData()
     }
     let usersListCellId = "UsersListTableViewCell"
-    
     private var usersListPresenter = UsersListPresenter()
     private var usersList: Array<UserModel> = []
 
@@ -45,6 +44,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            print("\(indexPath.row)")
+        let story = UIStoryboard(name: "UserDetails", bundle: nil)
+        let controller = story.instantiateViewController(identifier: "UserDetailsViewController") as! UserDetailsViewController
+        let user = usersList[indexPath.row]
+        controller.userId = user.id
+        self.present(controller, animated: true, completion: nil)
     }
 }
