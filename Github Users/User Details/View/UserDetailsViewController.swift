@@ -20,12 +20,13 @@ class UserDetailsViewController: UIViewController {
         userReposList = userDetailsPresenter.getUserReposMock(userId!)
         let userDetails: UserDetails = userDetailsPresenter.getUserDetailsMock(userId!)
         imgUserAvatar.image = UIImage(named: "mock_avatar")
+        imgUserAvatar.layer.cornerRadius = 10.0
         lblUsername.text = userDetails.username
         lblFollowersCount.text = String(describing: userDetails.followersCount!)
         lblRepositoriesCount.text = String(describing: userDetails.repositoriesCount!)
         tableViewReposList.dataSource = self
         tableViewReposList.delegate = self
-        tableViewReposList.rowHeight = UITableView.automaticDimension
+        tableViewReposList.rowHeight = 95.0//UITableView.automaticDimension
         tableViewReposList.separatorColor = UIColor.clear
         tableViewReposList.register(UINib.init(nibName: userRepoCellId, bundle: nil), forCellReuseIdentifier: userRepoCellId)
     }
