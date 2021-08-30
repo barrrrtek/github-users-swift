@@ -1,13 +1,7 @@
 import Foundation
 
-class UserModel {
-    var username: String?
-    var avatarURL: String?
-    var id: Int?
-
-    init(username: String, avatarURL: String, id: Int) {
-        self.username = username
-        self.avatarURL = avatarURL
-        self.id = id
-    }
+struct UserModel: Codable {
+    var login: String
+    var avatar_url: String
+    var id: Int
 }

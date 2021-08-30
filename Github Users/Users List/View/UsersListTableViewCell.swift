@@ -6,6 +6,7 @@ class UsersListTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        imgUserAvatar.layer.cornerRadius = 10.0
         // Initialization code
     }
 
