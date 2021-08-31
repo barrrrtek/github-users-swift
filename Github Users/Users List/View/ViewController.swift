@@ -11,6 +11,7 @@ class ViewController: UIViewController {
     let usersListCellId = "UsersListTableViewCell"
     private var usersListPresenter = UsersListPresenter()
     private var usersList: Array<UserModel> = []
+    private let repositoryAPI = RepositoryAPI()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +40,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: usersListCellId, for: indexPath) as! UsersListTableViewCell
         let user = usersList[indexPath.row]
         cell.imgUserAvatar.image = UIImage(named: "mock_avatar")
-        cell.lblUsername.text = user.username!
+        cell.lblUsername.text = user.login
         return cell
     }
     
@@ -48,6 +49,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let controller = story.instantiateViewController(identifier: "UserDetailsViewController") as! UserDetailsViewController
         let user = usersList[indexPath.row]
         controller.userId = user.id
+        repositoryAPI.fetchUsersFromAPI("barrrrtek")
         self.present(controller, animated: true, completion: nil)
     }
 }

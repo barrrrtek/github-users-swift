@@ -6,6 +6,7 @@ class RepositoryAPI {
     var userReposList: [UserRepo]?
     
     func fetchUsersFromAPI(_ searchedText: String) {
+        var listOfDetailsUsers: [UserDetails]?
         let session = URLSession.shared
         let url = URL(string: "https://api.github.com/search/users?q=\(searchedText.lowercased())&per_page=100")!
         let task = session.dataTask(with: url, completionHandler: { data, response, error in
@@ -26,7 +27,9 @@ class RepositoryAPI {
             
             do {
                 let json = try JSONSerialization.jsonObject(with: data!, options: [])
-                print(json)
+                
+                let jsonCast = json as? [String: AnyObject]
+                let jsonItems = jsonCast?["items"] as? [String: AnyObject]
             } catch {
                 print("JSON error: \(error.localizedDescription)")
             }

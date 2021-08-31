@@ -22,8 +22,8 @@ class UserDetailsViewController: UIViewController {
         imgUserAvatar.image = UIImage(named: "mock_avatar")
         imgUserAvatar.layer.cornerRadius = 10.0
         lblUsername.text = userDetails.username
-        lblFollowersCount.text = String(describing: userDetails.followersCount!)
-        lblRepositoriesCount.text = String(describing: userDetails.repositoriesCount!)
+        lblFollowersCount.text = String(describing: userDetails.followersCount)
+        lblRepositoriesCount.text = String(describing: userDetails.repositoriesCount)
         tableViewReposList.dataSource = self
         tableViewReposList.delegate = self
         tableViewReposList.rowHeight = 95.0//UITableView.automaticDimension
@@ -50,7 +50,7 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         let repo = userReposList![indexPath.row]
         cell.lblRepoName.text = repo.name
         cell.lblRepoURL.text = repo.url
-        cell.lblStarsCount.text = String(describing: repo.stars!)
+        cell.lblStarsCount.text = String(describing: repo.stars)
         return cell
     }
     
