@@ -5,13 +5,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var searchBart: UISearchBar!
     @IBAction func searchButton(_ sender: UIButton) {
         let searchText = searchBart.text
-        usersList = usersListPresenter.getSearchedUsersMock(searchText!)
+        usersList = usersListPresenter.getSearchedUsers(searchText!)
         tableView.reloadData()
     }
     let usersListCellId = "UsersListTableViewCell"
     private var usersListPresenter = UsersListPresenter()
-    private var usersList: Array<UserModel> = []
-    private let repositoryAPI = RepositoryAPI()
+    private var usersList: [UserModel] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +48,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let controller = story.instantiateViewController(identifier: "UserDetailsViewController") as! UserDetailsViewController
         let user = usersList[indexPath.row]
         controller.userId = user.id
-        repositoryAPI.fetchUsersFromAPI("barrrrtek")
         self.present(controller, animated: true, completion: nil)
     }
 }

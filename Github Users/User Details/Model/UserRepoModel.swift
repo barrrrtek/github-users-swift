@@ -1,6 +1,6 @@
 import Foundation
 
-struct UserRepo {
+struct UserRepo: Codable {
     var name: String
     var url: String
     var id: Int

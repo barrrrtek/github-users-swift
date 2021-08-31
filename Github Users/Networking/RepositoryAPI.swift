@@ -1,12 +1,12 @@
 import Foundation
 
 class RepositoryAPI {
-    var listOfUsers: [UserModel]?
-    var listOfDetailsUsers: [UserDetails]?
-    var userReposList: [UserRepo]?
+    var usersList: [UserModel] = []
+    var userDetailsJSON: [UserDetails] = []
+    var reposJSON: [UserRepo] = []
+    let currentPage = 1
     
     func fetchUsersFromAPI(_ searchedText: String) {
-        var listOfDetailsUsers: [UserDetails]?
         let session = URLSession.shared
         let url = URL(string: "https://api.github.com/search/users?q=\(searchedText.lowercased())&per_page=100")!
         let task = session.dataTask(with: url, completionHandler: { data, response, error in
@@ -25,24 +25,26 @@ class RepositoryAPI {
                 return
             }
             
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!, options: [])
-                
-                let jsonCast = json as? [String: AnyObject]
-                let jsonItems = jsonCast?["items"] as? [String: AnyObject]
-            } catch {
-                print("JSON error: \(error.localizedDescription)")
+            let json = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]
+            
+            if let jsonData = try? JSONSerialization.data(withJSONObject: json!["items"]!, options: [])
+            {
+                do {
+                    let decodedData = try JSONDecoder().decode([UserModel].self, from: jsonData)
+                    self.usersList = decodedData
+                } catch {
+                    print("ERROR:", error.localizedDescription)
+                }
             }
         })
         task.resume()
     }
     
     func fetchUserDetailsFromAPI(_ userId: Int) {
-        let _: String = "https://api.github.com/user/\(userId)"
+        let url = URL(string: "https://api.github.com/user/\(userId)")!
     }
     
-    func fetchUserReposFromAPI(_ userId: Int) {
-        let currentPage = 1
-        let _: String = "https://api.github.com/user/\(userId)/repos?per_page=3&\(currentPage)"
+    func fetchUserReposFromAPI(_ userId: Int, _ currentPage: Int) {
+        let url = URL(string: "https://api.github.com/user/\(userId)/repos?per_page=3&\(currentPage)")!
     }
 }
