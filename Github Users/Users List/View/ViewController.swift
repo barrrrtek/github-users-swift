@@ -38,7 +38,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: usersListCellId, for: indexPath) as! UsersListTableViewCell
         let user = usersList[indexPath.row]
-        cell.imgUserAvatar.image = UIImage(named: "mock_avatar")
+        let imageUrl:URL = URL(string: user.avatar_url)!
+        cell.imgUserAvatar.loadImge(withUrl: imageUrl)
         cell.lblUsername.text = user.login
         return cell
     }
@@ -50,4 +51,18 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         controller.userId = user.id
         self.present(controller, animated: true, completion: nil)
     }
+}
+
+extension UIImageView {
+    func loadImge(withUrl url: URL) {
+           DispatchQueue.global().async { [weak self] in
+               if let imageData = try? Data(contentsOf: url) {
+                   if let image = UIImage(data: imageData) {
+                       DispatchQueue.main.async {
+                           self?.image = image
+                       }
+                   }
+               }
+           }
+       }
 }
