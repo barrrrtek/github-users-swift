@@ -2,8 +2,7 @@ import Foundation
 
 struct UserRepo: Codable {
     var name: String
-    var url: String
+    var html_url: String
     var id: Int
-    var stars: Int
-    var userId: Int
+    var stargazers_count: Int
 }
