@@ -39,7 +39,7 @@ class RepositoryAPI {
         }).resume()
     }
     
-    func fetchUserDetailsFromAPI(_ userId: Int) {
+    func fetchUserDetailsFromAPI(_ userId: Int) -> UserDetails {
         let session = URLSession.shared
         let url = URL(string: "https://api.github.com/user/\(userId)")!
         session.dataTask(with: url, completionHandler: { [self] data, response, error in
@@ -58,19 +58,16 @@ class RepositoryAPI {
                 return
             }
             
-            let json = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]
-            
-            if let jsonData = try? JSONSerialization.data(withJSONObject: json!, options: [])
-            {
-                do {
-                    let decodedData = try JSONDecoder().decode(UserDetails.self, from: jsonData)
-                    self.userDetails = decodedData
-                    //print(self.userDetails)
-                } catch {
-                    print("ERROR:", error.localizedDescription)
-                }
+            do {
+                let decodedData = try JSONDecoder().decode(UserDetails.self, from: data!)
+                self.userDetails = decodedData
+                print(self.userDetails)
+            } catch {
+                print("ERROR:", error.localizedDescription)
             }
         }).resume()
+        
+        return userDetails
     }
     
     func fetchUserReposFromAPI(_ userId: Int, _ currentPage: Int) {

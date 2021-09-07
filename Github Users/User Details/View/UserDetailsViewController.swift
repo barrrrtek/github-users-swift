@@ -44,18 +44,15 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userReposList!.count
+        return userReposList?.count ?? 0
        }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableViewReposList.dequeueReusableCell(withIdentifier: userRepoCellId, for: indexPath) as! UserRepoTableViewCell
-        let _ = userReposList![indexPath.row]
+        let _ = userReposList?[indexPath.row]
         cell.lblRepoName.text = ""//repo.name
         cell.lblRepoURL.text = ""//repo.url
         cell.lblStarsCount.text = ""//String(describing: repo.stars)
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
 }
