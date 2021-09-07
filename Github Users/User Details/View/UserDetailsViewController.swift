@@ -17,16 +17,24 @@ class UserDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userReposList = userDetailsPresenter.getUserReposMock(userId!)
-        let userDetails: UserDetails = userDetailsPresenter.getUserDetailsMock(userId!)
+        initViewElements()
+        initTableViewReposList()
+    }
+    
+    func initViewElements() {
+        userReposList = userDetailsPresenter.getUserReposMock(userId ?? 0)
+        let userDetails: UserDetails = userDetailsPresenter.getUserDetailsMock(userId ?? 0)
         imgUserAvatar.image = UIImage(named: "mock_avatar")
         imgUserAvatar.layer.cornerRadius = 10.0
         lblUsername.text = userDetails.username
-        lblFollowersCount.text = String(describing: userDetails.followersCount!)
-        lblRepositoriesCount.text = String(describing: userDetails.repositoriesCount!)
+        lblFollowersCount.text = String(describing: userDetails.followersCount ?? 0)
+        lblRepositoriesCount.text = String(describing: userDetails.repositoriesCount ?? 0)
+    }
+    
+    func initTableViewReposList() {
         tableViewReposList.dataSource = self
         tableViewReposList.delegate = self
-        tableViewReposList.rowHeight = 95.0//UITableView.automaticDimension
+        tableViewReposList.rowHeight = 95.0
         tableViewReposList.separatorColor = UIColor.clear
         tableViewReposList.register(UINib.init(nibName: userRepoCellId, bundle: nil), forCellReuseIdentifier: userRepoCellId)
     }
@@ -47,13 +55,10 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableViewReposList.dequeueReusableCell(withIdentifier: userRepoCellId, for: indexPath) as! UserRepoTableViewCell
-        let repo = userReposList![indexPath.row]
-        cell.lblRepoName.text = repo.name
-        cell.lblRepoURL.text = repo.url
-        cell.lblStarsCount.text = String(describing: repo.stars!)
+        let repo = userReposList?[indexPath.row]
+        cell.lblRepoName.text = repo?.name
+        cell.lblRepoURL.text = repo?.url
+        cell.lblStarsCount.text = String(describing: repo?.stars!)
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
 }

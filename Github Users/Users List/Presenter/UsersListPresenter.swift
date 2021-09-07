@@ -6,7 +6,8 @@ class UsersListPresenter {
     
     func getSearchedUsersMock(_ searchedUser: String) -> [UserModel]{
         searchedUsersMock.removeAll()
-        searchedUsersMock = repositoryMock.listOfUsers.filter({($0.username?.lowercased().contains(searchedUser.lowercased()))!})
+        searchedUsersMock = repositoryMock.listOfUsers.filter {($0.username?.lowercased().contains(searchedUser.lowercased())
+        )!}
         return searchedUsersMock
     }
 }

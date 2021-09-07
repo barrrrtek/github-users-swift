@@ -7,7 +7,7 @@ class UserDetailsPresenter {
     
     func getUserDetailsMock(_ id: Int) -> UserDetails{
         let detailsUsersList = repositoryMock.listOfDetailsUsers.filter({$0.id == id})
-        userDetails = detailsUsersList[0]
+        userDetails = detailsUsersList.first ?? userDetails
         return userDetails
     }
     
