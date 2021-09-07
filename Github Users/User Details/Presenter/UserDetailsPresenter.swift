@@ -2,9 +2,10 @@ import Foundation
 
 class UserDetailsPresenter {
     private var userRepos: [UserRepo] = []
-    //private var userDetails = UserDetails(login: "", avatar_url: "", id: 0, followers: 0, public_repos: 0)
+    private var userDetails = UserDetails(login: "", avatar_url: "", id: 0, followers: 0, public_repos: 0)
     var repositoryMock = RepositoryMock()
     var repositoryAPI = RepositoryAPI()
+    var view: UserDetailsViewController?
     
     func getUserDetailsMock(_ id: Int) -> UserDetails{
         let detailsUsersList = repositoryMock.listOfDetailsUsersMock
@@ -19,10 +20,15 @@ class UserDetailsPresenter {
         return userRepos
     }
     
-    func getUserDetailsFromAPI(_ id: Int) -> UserDetails{
-        let userDetails: UserDetails = repositoryAPI.fetchUserDetailsFromAPI(id)
-        //userDetails = repositoryAPI.userDetails
-        print(userDetails)
-        return userDetails
+    func getUserDetailsFromAPI(_ userID: Int){
+        repositoryAPI.fetchUserDetailsFromAPI(userID) { (userDetails) in
+            self.view?.setUserDetails(userDetails)
+        }
+    }
+    
+    func getUserReposFromAPI(_ userID: Int){
+        repositoryAPI.fetchUserReposFromAPI(userID) { (repos) in
+            self.view?.setUserRepos(repos)
+        }
     }
 }

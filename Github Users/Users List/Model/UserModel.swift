@@ -5,3 +5,7 @@ struct UserModel: Codable {
     var avatar_url: String
     var id: Int
 }
+
+struct UsersResposne: Codable {
+    var items: [UserModel] = []
+}

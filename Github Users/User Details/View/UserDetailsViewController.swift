@@ -10,25 +10,21 @@ class UserDetailsViewController: UIViewController {
     @IBOutlet weak var lblRepositoriesCount: UILabel!
     @IBOutlet weak var lblRepositoriesList: UILabel!
     @IBOutlet weak var tableViewReposList: UITableView!
-    var userId: Int?
     let userDetailsPresenter = UserDetailsPresenter()
     let userRepoCellId = "UserRepoTableViewCell"
     var userReposList: [UserRepo]?
+    var userID: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initViewElements()
         initTableViewReposList()
+        self.userDetailsPresenter.view = self
     }
     
     func initViewElements() {
-        userReposList = userDetailsPresenter.getUserReposMock(userId ?? 0)
-        let userDetails: UserDetails = userDetailsPresenter.getUserDetailsMock(userId ?? 0)
-        imgUserAvatar.image = UIImage(named: "mock_avatar")
-        imgUserAvatar.layer.cornerRadius = 10.0
-        lblUsername.text = userDetails.login
-        lblFollowersCount.text = String(describing: userDetails.followers ?? 0)
-        lblRepositoriesCount.text = String(describing: userDetails.public_repos ?? 0)
+        userDetailsPresenter.getUserDetailsFromAPI(userID ?? 0)
+        userDetailsPresenter.getUserReposFromAPI(userID ?? 0)
     }
     
     func initTableViewReposList() {
@@ -37,6 +33,20 @@ class UserDetailsViewController: UIViewController {
         tableViewReposList.rowHeight = 95.0
         tableViewReposList.separatorColor = UIColor.clear
         tableViewReposList.register(UINib.init(nibName: userRepoCellId, bundle: nil), forCellReuseIdentifier: userRepoCellId)
+    }
+    
+    func setUserDetails(_ userDetails: UserDetails) {
+        let imageUrl:URL = URL(string: userDetails.avatar_url) ?? URL(string: "")!
+        self.imgUserAvatar.loadImge(withUrl: imageUrl)
+        self.imgUserAvatar.layer.cornerRadius = 10.0
+        self.lblUsername.text = userDetails.login
+        self.lblFollowersCount.text = String(describing: userDetails.followers)
+        self.lblRepositoriesCount.text = String(describing: userDetails.public_repos)
+    }
+    
+    func setUserRepos(_ userRepos: [UserRepo]) {
+        userReposList = userRepos
+        self.tableViewReposList.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,14 +61,14 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userReposList?.count ?? 0
-       }
+    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableViewReposList.dequeueReusableCell(withIdentifier: userRepoCellId, for: indexPath) as! UserRepoTableViewCell
-        let _ = userReposList?[indexPath.row]
-        cell.lblRepoName.text = ""//repo.name
-        cell.lblRepoURL.text = ""//repo.url
-        cell.lblStarsCount.text = ""//String(describing: repo.stars)
+        let repo = userReposList?[indexPath.row]
+        cell.lblRepoName.text = repo?.name
+        cell.lblRepoURL.text = repo?.html_url
+        cell.lblStarsCount.text = String(describing: repo?.stargazers_count)
         return cell
     }
 }

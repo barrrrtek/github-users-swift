@@ -1,49 +1,19 @@
 import Foundation
 
 class RepositoryAPI {
-    var usersList: [UserModel] = []
-    var userDetails: UserDetails = UserDetails(login: "", avatar_url: "", id: 0, followers: 0, public_repos: 0)
-    var reposList: [UserRepo] = []
-    let currentPage = 1
+    let baseURL: String = "https://api.github.com/"
+    let session = URLSession.shared
+    var currentPage = 1
     
-    func fetchUsersFromAPI(_ searchedText: String) {
-        let session = URLSession.shared
-        let url = URL(string: "https://api.github.com/search/users?q=\(searchedText.lowercased())&per_page=100")!
-        session.dataTask(with: url, completionHandler: { data, response, error in
-            if error != nil || data == nil {
+    func fetchUsersFromAPI(_ searchedText: String, completionHandler: @escaping ([UserModel]) -> Void) {
+        let url = URL(string: "\(baseURL)search/users?q=\(searchedText.lowercased())&per_page=100")!
+        session.dataTask(with: url) { (data, response, error) in
+            guard error == nil else {
                 print("Client error!")
                 return
             }
-
-            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                print("Server error!")
-                return
-            }
             
-            guard let mime = response.mimeType, mime == "application/json" else {
-                print("Wrong MIME type!")
-                return
-            }
-            
-            let json = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]
-            
-            if let jsonData = try? JSONSerialization.data(withJSONObject: json!["items"]!, options: [])
-            {
-                do {
-                    let decodedData = try JSONDecoder().decode([UserModel].self, from: jsonData)
-                    self.usersList = decodedData
-                } catch {
-                    print("ERROR:", error.localizedDescription)
-                }
-            }
-        }).resume()
-    }
-    
-    func fetchUserDetailsFromAPI(_ userId: Int) -> UserDetails {
-        let session = URLSession.shared
-        let url = URL(string: "https://api.github.com/user/\(userId)")!
-        session.dataTask(with: url, completionHandler: { [self] data, response, error in
-            if error != nil || data == nil {
+            guard let data = data else {
                 print("Client error!")
                 return
             }
@@ -59,22 +29,58 @@ class RepositoryAPI {
             }
             
             do {
-                let decodedData = try JSONDecoder().decode(UserDetails.self, from: data!)
-                self.userDetails = decodedData
-                print(self.userDetails)
+                let decodedData = try JSONDecoder().decode(UsersResposne.self, from: data)
+                DispatchQueue.main.async {
+                    completionHandler(decodedData.items)
+                }
             } catch {
                 print("ERROR:", error.localizedDescription)
             }
-        }).resume()
-        
-        return userDetails
+        }.resume()
     }
     
-    func fetchUserReposFromAPI(_ userId: Int, _ currentPage: Int) {
-        let session = URLSession.shared
-        let url = URL(string: "https://api.github.com/user/\(userId)/repos?per_page=3&\(currentPage)")!
-        session.dataTask(with: url, completionHandler: { data, response, error in
-            if error != nil || data == nil {
+    func fetchUserDetailsFromAPI(_ userID: Int, completionHandler: @escaping (UserDetails) -> Void) {
+        let url = URL(string: "\(baseURL)user/\(userID)")!
+        session.dataTask(with: url) { (data, response, error) in
+            guard error == nil else {
+                print("Client error!")
+                return
+            }
+            
+            guard let data = data else {
+                print("Client error!")
+                return
+            }
+
+            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                print("Server error!")
+                return
+            }
+            
+            guard let mime = response.mimeType, mime == "application/json" else {
+                print("Wrong MIME type!")
+                return
+            }
+            do {
+                let decodedData = try JSONDecoder().decode(UserDetails.self, from: data)
+                DispatchQueue.main.async {
+                    completionHandler(decodedData)
+                }
+            } catch {
+                print("ERROR:", error.localizedDescription)
+            }
+        }.resume()
+    }
+    
+    func fetchUserReposFromAPI(_ userID: Int, completionHandler: @escaping ([UserRepo]) -> Void) {
+        let url = URL(string: "\(baseURL)user/\(userID)/repos?per_page=3&\(currentPage)")!
+        session.dataTask(with: url) { (data, response, error) in
+            guard error == nil else {
+                print("Client error!")
+                return
+            }
+            
+            guard let data = data else {
                 print("Client error!")
                 return
             }
@@ -89,17 +95,14 @@ class RepositoryAPI {
                 return
             }
             
-            let json = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]
-            
-            if let jsonData = try? JSONSerialization.data(withJSONObject: json!, options: [])
-            {
-                do {
-                    let decodedData = try JSONDecoder().decode([UserRepo].self, from: jsonData)
-                    self.reposList = decodedData
-                } catch {
-                    print("ERROR:", error.localizedDescription)
+            do {
+                let decodedData = try JSONDecoder().decode([UserRepo].self, from: data)
+                DispatchQueue.main.async {
+                    completionHandler(decodedData)
                 }
+            } catch {
+                print("ERROR:", error.localizedDescription)
             }
-        }).resume()
+        }.resume()
     }
 }

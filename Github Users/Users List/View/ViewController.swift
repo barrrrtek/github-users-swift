@@ -5,12 +5,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var searchBart: UISearchBar!
     @IBAction func searchButton(_ sender: UIButton) {
         let searchText = searchBart.text
-        usersList = usersListPresenter.getSearchedUsers(searchText ?? "")
-        tableView.reloadData()
+        usersListPresenter.getSearchedUsers(searchText ?? "")
     }
+    
+    private var usersList: [UserModel] = []
     let usersListCellId = "UsersListTableViewCell"
     private var usersListPresenter = UsersListPresenter()
-    private var usersList: [UserModel] = []
+    private var userDetailsPresenter = UserDetailsPresenter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +20,12 @@ class ViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorColor = UIColor.clear
         tableView.register(UINib.init(nibName: usersListCellId, bundle: nil), forCellReuseIdentifier: usersListCellId)
+        self.usersListPresenter.view = self
+    }
+    
+    func setElements(_ elements: [UserModel]) {
+        self.usersList = elements
+        self.tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -38,7 +45,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: usersListCellId, for: indexPath) as! UsersListTableViewCell
         let user = usersList[indexPath.row]
-        let imageUrl:URL = URL(string: user.avatar_url)!
+        let imageUrl:URL = URL(string: user.avatar_url) ?? URL(string: "")!
         cell.imgUserAvatar.loadImge(withUrl: imageUrl)
         cell.lblUsername.text = user.login
         return cell
@@ -48,7 +55,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let story = UIStoryboard(name: "UserDetails", bundle: nil)
         let controller = story.instantiateViewController(identifier: "UserDetailsViewController") as! UserDetailsViewController
         let user = usersList[indexPath.row]
-        controller.userId = user.id
+        controller.userID = user.id
         self.present(controller, animated: true, completion: nil)
     }
 }
