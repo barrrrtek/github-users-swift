@@ -6,6 +6,13 @@ class UserDetailsPresenter {
     var repositoryMock = RepositoryMock()
     var repositoryAPI = RepositoryAPI()
     
+    func getUserDetailsMock(_ id: Int) -> UserDetails{
+        let detailsUsersList = repositoryMock.listOfDetailsUsersMock
+        var userDetails = UserDetails(login: "", avatar_url: "", id: 0, followers: 0, public_repos: 0)
+        userDetails = detailsUsersList.first ?? userDetails
+        return userDetails
+    }
+    
     func getUserReposMock(_ id: Int) -> [UserRepo]{
         userRepos.removeAll()
         userRepos = repositoryMock.userReposListMock

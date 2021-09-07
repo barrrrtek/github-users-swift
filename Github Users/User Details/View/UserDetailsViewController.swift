@@ -26,9 +26,9 @@ class UserDetailsViewController: UIViewController {
         let userDetails: UserDetails = userDetailsPresenter.getUserDetailsMock(userId ?? 0)
         imgUserAvatar.image = UIImage(named: "mock_avatar")
         imgUserAvatar.layer.cornerRadius = 10.0
-        lblUsername.text = userDetails.username
-        lblFollowersCount.text = String(describing: userDetails.followersCount ?? 0)
-        lblRepositoriesCount.text = String(describing: userDetails.repositoriesCount ?? 0)
+        lblUsername.text = userDetails.login
+        lblFollowersCount.text = String(describing: userDetails.followers ?? 0)
+        lblRepositoriesCount.text = String(describing: userDetails.public_repos ?? 0)
     }
     
     func initTableViewReposList() {
