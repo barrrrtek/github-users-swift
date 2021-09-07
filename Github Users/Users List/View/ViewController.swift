@@ -5,7 +5,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var searchBart: UISearchBar!
     @IBAction func searchButton(_ sender: UIButton) {
         let searchText = searchBart.text
-        usersList = usersListPresenter.getSearchedUsersMock(searchText ?? "")
+        usersList = usersListPresenter.getSearchedUsers(searchText ?? "")
         tableView.reloadData()
     }
     let usersListCellId = "UsersListTableViewCell"
