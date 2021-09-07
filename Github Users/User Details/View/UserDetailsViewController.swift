@@ -68,7 +68,7 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         let repo = userReposList?[indexPath.row]
         cell.lblRepoName.text = repo?.name
         cell.lblRepoURL.text = repo?.html_url
-        cell.lblStarsCount.text = String(describing: repo?.stargazers_count)
+        cell.lblStarsCount.text = String(describing: repo!.stargazers_count)
         return cell
     }
 }
