@@ -31,4 +31,11 @@ class UserDetailsPresenter {
             self.view?.setUserRepos(repos)
         }
     }
+    
+    func getMoreUserReposFromAPI(_ userID: Int){
+        repositoryAPI.currentPage += 1
+        repositoryAPI.fetchUserReposFromAPI(userID) { (repos) in
+            self.view?.setMoreUserRepos(repos)
+        }
+    }
 }

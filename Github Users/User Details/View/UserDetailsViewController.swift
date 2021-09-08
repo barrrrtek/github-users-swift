@@ -49,6 +49,13 @@ class UserDetailsViewController: UIViewController {
         self.tableViewReposList.reloadData()
     }
     
+    func setMoreUserRepos(_ userRepos: [UserRepo]) {
+        userRepos.forEach { user in
+            userReposList?.append(user)
+        }
+        self.tableViewReposList.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -70,5 +77,13 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         cell.lblRepoURL.text = repo?.html_url
         cell.lblStarsCount.text = String(describing: repo!.stargazers_count)
         return cell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastElement = (userReposList?.count ?? 0) - 1
+        if indexPath.row == lastElement {
+            userDetailsPresenter.getMoreUserReposFromAPI(userID ?? 0)
+        }
     }
 }
