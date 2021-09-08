@@ -16,8 +16,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="347" height="121"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sV-Us-pSi">
-                        <rect key="frame" x="146.5" y="48" width="54.5" height="28"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sV-Us-pSi">
+                        <rect key="frame" x="147" y="48" width="155" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="155" id="34o-71-omG"/>
+                            <constraint firstAttribute="height" constant="30" id="AHT-r1-rTP"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -31,12 +35,13 @@
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="4sV-Us-pSi" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="AtT-se-Tij"/>
-                    <constraint firstItem="4sV-Us-pSi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="48" id="BhS-rd-i9i"/>
+                    <constraint firstAttribute="trailing" secondItem="4sV-Us-pSi" secondAttribute="trailing" constant="45" id="Bkk-sj-Xbo"/>
                     <constraint firstItem="cZR-rO-R2X" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="15" id="C6p-mm-ZCh"/>
+                    <constraint firstAttribute="bottom" secondItem="4sV-Us-pSi" secondAttribute="bottom" constant="45" id="DZ4-Es-Vfi"/>
                     <constraint firstItem="cZR-rO-R2X" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="eT7-Wu-1s2"/>
+                    <constraint firstItem="4sV-Us-pSi" firstAttribute="leading" secondItem="cZR-rO-R2X" secondAttribute="trailing" constant="32" id="oXl-KN-zwd"/>
                     <constraint firstAttribute="bottomMargin" secondItem="cZR-rO-R2X" secondAttribute="bottom" constant="10" id="owQ-ki-Mzu"/>
-                    <constraint firstItem="4sV-Us-pSi" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="qMG-t0-uU6"/>
+                    <constraint firstItem="4sV-Us-pSi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="48" id="snB-mG-3Ra"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

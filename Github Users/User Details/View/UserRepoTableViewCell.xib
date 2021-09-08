@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,25 +17,25 @@
                 <rect key="frame" x="0.0" y="0.0" width="347" height="84"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repo name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zse-cA-tPP" userLabel="Label repo name">
-                        <rect key="frame" x="113.5" y="0.0" width="120" height="27.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repo name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zse-cA-tPP" userLabel="Label repo name">
+                        <rect key="frame" x="135" y="0.0" width="120" height="27.5"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4iF-eu-AHS" userLabel="Label stars count">
-                        <rect key="frame" x="316" y="3" width="11" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4iF-eu-AHS" userLabel="Label stars count">
+                        <rect key="frame" x="316" y="5" width="11" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" systemColor="systemYellowColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stars:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nb9-lx-jwW" userLabel="Label stars">
-                        <rect key="frame" x="262" y="3" width="46" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stars:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nb9-lx-jwW" userLabel="Label stars">
+                        <rect key="frame" x="265" y="5" width="46" height="21"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" systemColor="systemYellowColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukv-mB-YQ6" userLabel="Label repo url">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukv-mB-YQ6" userLabel="Label repo url">
                         <rect key="frame" x="20" y="32" width="32" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -42,14 +43,14 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Nb9-lx-jwW" firstAttribute="top" secondItem="yxy-nS-Ads" secondAttribute="top" constant="3" id="505-Cr-6hw"/>
-                    <constraint firstItem="ukv-mB-YQ6" firstAttribute="leading" secondItem="yxy-nS-Ads" secondAttribute="leadingMargin" id="CXj-Rq-eKp"/>
-                    <constraint firstItem="zse-cA-tPP" firstAttribute="top" secondItem="yxy-nS-Ads" secondAttribute="top" id="HAg-91-4XR"/>
-                    <constraint firstItem="ukv-mB-YQ6" firstAttribute="top" secondItem="zse-cA-tPP" secondAttribute="bottom" constant="4.5" id="VU6-dn-Wbg"/>
-                    <constraint firstItem="4iF-eu-AHS" firstAttribute="top" secondItem="yxy-nS-Ads" secondAttribute="top" constant="3" id="ZO1-le-ioW"/>
-                    <constraint firstItem="zse-cA-tPP" firstAttribute="centerX" secondItem="yxy-nS-Ads" secondAttribute="centerX" id="oog-AC-SvH"/>
-                    <constraint firstAttribute="trailing" secondItem="4iF-eu-AHS" secondAttribute="trailing" constant="20" id="pAP-70-4sE"/>
-                    <constraint firstItem="4iF-eu-AHS" firstAttribute="leading" secondItem="Nb9-lx-jwW" secondAttribute="trailing" constant="8" id="wJN-ix-MB1"/>
+                    <constraint firstItem="ukv-mB-YQ6" firstAttribute="leading" secondItem="yxy-nS-Ads" secondAttribute="leading" constant="20" id="0MT-kE-oa5"/>
+                    <constraint firstItem="Nb9-lx-jwW" firstAttribute="leading" secondItem="zse-cA-tPP" secondAttribute="trailing" constant="10" id="1i7-cm-Pjf"/>
+                    <constraint firstItem="Nb9-lx-jwW" firstAttribute="top" secondItem="yxy-nS-Ads" secondAttribute="top" constant="5" id="4Md-Y9-rew"/>
+                    <constraint firstItem="4iF-eu-AHS" firstAttribute="top" secondItem="yxy-nS-Ads" secondAttribute="top" constant="5" id="NLX-aM-YRF"/>
+                    <constraint firstItem="4iF-eu-AHS" firstAttribute="leading" secondItem="Nb9-lx-jwW" secondAttribute="trailing" constant="5" id="j1s-Zz-L82"/>
+                    <constraint firstAttribute="trailing" secondItem="4iF-eu-AHS" secondAttribute="trailing" constant="20" id="nod-Ox-YyI"/>
+                    <constraint firstItem="zse-cA-tPP" firstAttribute="top" secondItem="yxy-nS-Ads" secondAttribute="top" id="rYH-g4-LnH"/>
+                    <constraint firstItem="ukv-mB-YQ6" firstAttribute="top" secondItem="yxy-nS-Ads" secondAttribute="top" constant="32" id="yEK-Ai-UJJ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="8RU-gi-0TK"/>
@@ -62,4 +63,9 @@
             <point key="canvasLocation" x="139.85507246376812" y="87.053571428571431"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>
