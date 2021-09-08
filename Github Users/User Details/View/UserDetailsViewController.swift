@@ -14,6 +14,7 @@ class UserDetailsViewController: UIViewController {
     let userRepoCellId = "UserRepoTableViewCell"
     var userReposList: [UserRepo]?
     var userID: Int?
+    var userReposCount: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,7 @@ class UserDetailsViewController: UIViewController {
         self.lblUsername.text = userDetails.login
         self.lblFollowersCount.text = String(describing: userDetails.followers)
         self.lblRepositoriesCount.text = String(describing: userDetails.public_repos)
+        userReposCount = userDetails.public_repos
     }
     
     func setUserRepos(_ userRepos: [UserRepo]) {
@@ -82,7 +84,7 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastElement = (userReposList?.count ?? 0) - 1
-        if indexPath.row == lastElement {
+        if indexPath.row == lastElement && lastElement < (userReposCount ?? 0) - 1{
             userDetailsPresenter.getMoreUserReposFromAPI(userID ?? 0)
         }
     }
