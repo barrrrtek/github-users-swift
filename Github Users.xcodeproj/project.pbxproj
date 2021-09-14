@@ -20,7 +20,6 @@
 		CC8904AE26D58126004E557B /* UsersListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8904AC26D58126004E557B /* UsersListTableViewCell.swift */; };
 		CC8904AF26D58126004E557B /* UsersListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC8904AD26D58126004E557B /* UsersListTableViewCell.xib */; };
 		CC948FB226D029E2007565FF /* UsersListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC948FB126D029E2007565FF /* UsersListPresenter.swift */; };
-		CCB7C8C426D9131B00CCA68F /* RepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB7C8C326D9131B00CCA68F /* RepositoryMock.swift */; };
 		CCB7C8C726D9248100CCA68F /* UserRepoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB7C8C526D9248100CCA68F /* UserRepoTableViewCell.swift */; };
 		CCB7C8C826D9248100CCA68F /* UserRepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCB7C8C626D9248100CCA68F /* UserRepoTableViewCell.xib */; };
 		CCEFCAA326CD63AB0047CD0E /* UserDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEFCAA226CD63AB0047CD0E /* UserDetailsModel.swift */; };
@@ -63,7 +62,6 @@
 		CC8904AC26D58126004E557B /* UsersListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListTableViewCell.swift; sourceTree = "<group>"; };
 		CC8904AD26D58126004E557B /* UsersListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersListTableViewCell.xib; sourceTree = "<group>"; };
 		CC948FB126D029E2007565FF /* UsersListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListPresenter.swift; sourceTree = "<group>"; };
-		CCB7C8C326D9131B00CCA68F /* RepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryMock.swift; sourceTree = "<group>"; };
 		CCB7C8C526D9248100CCA68F /* UserRepoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepoTableViewCell.swift; sourceTree = "<group>"; };
 		CCB7C8C626D9248100CCA68F /* UserRepoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserRepoTableViewCell.xib; sourceTree = "<group>"; };
 		CCEFCAA226CD63AB0047CD0E /* UserDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsModel.swift; sourceTree = "<group>"; };
@@ -161,7 +159,6 @@
 		CCB7C8C226D912FD00CCA68F /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				CCB7C8C326D9131B00CCA68F /* RepositoryMock.swift */,
 				CC5B2E5426DA36C200BF6F6A /* RepositoryAPI.swift */,
 			);
 			path = Networking;
@@ -347,7 +344,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC59700326D7ADB60086D9CD /* UserDetailsPresenter.swift in Sources */,
-				CCB7C8C426D9131B00CCA68F /* RepositoryMock.swift in Sources */,
 				CCB7C8C726D9248100CCA68F /* UserRepoTableViewCell.swift in Sources */,
 				CC5B2E5526DA36C200BF6F6A /* RepositoryAPI.swift in Sources */,
 				CC8904AE26D58126004E557B /* UsersListTableViewCell.swift in Sources */,

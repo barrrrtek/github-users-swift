@@ -3,7 +3,6 @@ import Foundation
 class RepositoryAPI {
     let baseURL: String = "https://api.github.com/"
     let session = URLSession.shared
-    var currentPage = 1
     
     func fetchUsersFromAPI(_ searchedText: String, completionHandler: @escaping ([UserModel]) -> Void) {
         let url = URL(string: "\(baseURL)search/users?q=\(searchedText.lowercased())&per_page=100")!
@@ -72,7 +71,7 @@ class RepositoryAPI {
         }.resume()
     }
     
-    func fetchUserReposFromAPI(_ userID: Int, completionHandler: @escaping ([UserRepo]) -> Void) {
+    func fetchUserReposFromAPI(_ userID: Int, _ currentPage: Int, completionHandler: @escaping ([UserRepo]) -> Void) {
         let url = URL(string: "\(baseURL)user/\(userID)/repos?per_page=3&\(currentPage)")!
         session.dataTask(with: url) { (data, response, error) in
             guard error == nil else {

@@ -20,6 +20,7 @@ class UserDetailsViewController: UIViewController {
         super.viewDidLoad()
         initViewElements()
         initTableViewReposList()
+        setPropertiesTableViewReposList()
         self.userDetailsPresenter.view = self
     }
     
@@ -31,9 +32,12 @@ class UserDetailsViewController: UIViewController {
     func initTableViewReposList() {
         tableViewReposList.dataSource = self
         tableViewReposList.delegate = self
-        tableViewReposList.rowHeight = 95.0
-        tableViewReposList.separatorColor = UIColor.clear
         tableViewReposList.register(UINib.init(nibName: userRepoCellId, bundle: nil), forCellReuseIdentifier: userRepoCellId)
+    }
+    
+    func setPropertiesTableViewReposList() {
+        tableViewReposList.rowHeight = UITableView.automaticDimension
+        tableViewReposList.separatorColor = UIColor.clear
     }
     
     func setUserDetails(_ userDetails: UserDetails) {

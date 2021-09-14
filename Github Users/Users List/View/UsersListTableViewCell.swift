@@ -7,13 +7,10 @@ class UsersListTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         imgUserAvatar.layer.cornerRadius = 10.0
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
 }
