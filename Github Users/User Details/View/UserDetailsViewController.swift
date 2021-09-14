@@ -36,7 +36,7 @@ class UserDetailsViewController: UIViewController {
     }
     
     func setPropertiesTableViewReposList() {
-        tableViewReposList.rowHeight = UITableView.automaticDimension
+        tableViewReposList.rowHeight = 70.0
         tableViewReposList.separatorColor = UIColor.clear
     }
     
