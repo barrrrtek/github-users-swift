@@ -1,15 +1,8 @@
 import Foundation
 
-class UserRepo {
+struct UserRepo: Codable {
     var name: String
-    var url: String
+    var html_url: String
     var id: Int
-    var stars: Int
-
-    init(name: String, url: String, id: Int, stars: Int) {
-        self.name = name
-        self.url = url
-        self.id = id
-        self.stars = stars
-    }
+    var stargazers_count: Int
 }
