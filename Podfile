@@ -6,6 +6,7 @@ target 'Github Users' do
   use_frameworks!
 
   # Pods for Github Users
+  pod 'SwiftLint'
 
   target 'Github UsersTests' do
     inherit! :search_paths
